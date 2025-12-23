@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, debounceTime, delay, map, mergeMap, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { delay, map, mergeMap } from 'rxjs/operators';
 import { Film } from '../models/films.model';
 
 @Injectable({
@@ -9,7 +9,6 @@ import { Film } from '../models/films.model';
 })
 export class FilmService {
     private http = inject(HttpClient);
-    private apiUrl = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
     private token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNmNkNzQ5Mzk4OGE1OGNjM2ZkNWM2ZjE0YzUwY2M2MyIsIm5iZiI6MTc2NjM2ODMxNC44OTQsInN1YiI6IjY5NDhhNDNhNTc5MTZmYjBjNDJmYzFiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vHIczxmBnoa6ICVOTPgBlBsfQ8CvDMgvlUftKRhduZo';
 
     private headers = new HttpHeaders()
@@ -45,6 +44,7 @@ export class FilmService {
     }
 
     getFilmById(id: number, isMovies: boolean): Observable<Film> {
+
         const apiUrl = `https://api.themoviedb.org/3/${isMovies ? 'movie' : 'tv'}/${id}`;
 
         const request = this.http.get<Film>(apiUrl, { headers: this.headers }).pipe(

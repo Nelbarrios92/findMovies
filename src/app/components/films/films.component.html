@@ -1,5 +1,5 @@
-<div class="w-[171px] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl skeleton"
-    [routerLink]="film().id ? ['/film', film().id] : ['/']">
+<div (click)="clicked.emit(film().id)"
+    class="w-[171px] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl skeleton">
     <div class="w-[171px] h-[258px] relative rounded-md bg-gray-800 overflow-auto skeleton">
         <img class="skeleton" src="https://image.tmdb.org/t/p/w500/{{ film().poster_path }}"
             alt="{{ film().title || film().name }}">

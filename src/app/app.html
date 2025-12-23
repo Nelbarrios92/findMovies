@@ -1,6 +1,6 @@
-<section>
+<section class="h-[100vh] overflow-auto">
 
-  <div class="pl-[8em]">
+  <div class="md:pl-[8em] pl-8">
     <app-search-bar></app-search-bar>
   </div>
   @if(store.error()){
@@ -25,7 +25,7 @@
   </div>
   }@else{
 
-  <div class="pl-[8em]">
+  <div class="md:pl-[8em] pl-8">
     <router-outlet></router-outlet>
   </div>
   }

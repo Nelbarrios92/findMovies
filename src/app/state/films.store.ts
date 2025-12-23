@@ -1,14 +1,14 @@
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { Film } from '../models/films.model';
 import { FilmService } from '../services/film.service';
-import { effect, inject } from '@angular/core';
-import { debounceTime, delay, map, of, switchMap } from 'rxjs';
+import { inject } from '@angular/core';
 
 export interface FilmsState {
     movies: Film[];
     series: Film[];
     filteredMovies: Film[];
     searchResults: Film[];
+    selectedType: string;
     loading: boolean;
     error: string | null;
 }
@@ -23,6 +23,7 @@ export const initialFilmsState: FilmsState = {
     series: emptyFilms,
     filteredMovies: emptyFilms,
     searchResults: [],
+    selectedType: 'movies',
     loading: true,
     error: null,
 };
@@ -36,6 +37,12 @@ export const FilmsStore = signalStore(
             patchState(store, {
                 loading: true,
                 error: null
+            });
+        },
+
+        setSelectedType(type: string) {
+            patchState(store, {
+                selectedType: type
             });
         },
 
@@ -54,6 +61,9 @@ export const FilmsStore = signalStore(
         },
 
         loadMovies() {
+            if (store.movies().length > 2) {
+                return;
+            }
             patchState(store, {
                 loading: true,
                 error: null
@@ -79,6 +89,9 @@ export const FilmsStore = signalStore(
         },
 
         loadSeries() {
+            if (store.series().length > 2) {
+                return;
+            }
             patchState(store, {
                 loading: true,
                 error: null
@@ -104,6 +117,9 @@ export const FilmsStore = signalStore(
         },
 
         loadFilteredMovies() {
+            if (store.filteredMovies().length > 2) {
+                return;
+            }
             patchState(store, {
                 loading: true,
                 error: null
@@ -121,5 +137,6 @@ export const FilmsStore = signalStore(
         },
 
     })),
+
 
 );

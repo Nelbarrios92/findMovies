@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Film } from '../../models/films.model';
 import { FilmsStore } from '../../state/films.store';
@@ -13,20 +13,18 @@ import { SkeletonLoaderDirective } from '../../directives/skeleton-loader.direct
 })
 export class FilmDetailComponent {
 
-    filmId: string | null = null;
     film = signal<Film | null>(null);
     store = inject(FilmsStore);
-
-    constructor(private route: ActivatedRoute, private filmService: FilmService) {
-    }
+    route = inject(ActivatedRoute);
+    filmService = inject(FilmService);
 
     ngOnInit(): void {
         this.route.params.subscribe({
             next: (params: any) => {
                 this.store.startLoading();
-                this.filmId = params.id;
-                const isMovie = localStorage.getItem('tab') === 'movies';
-                this.filmService.getFilmById(+params.id, isMovie).subscribe({
+                const filmId = params.id;
+                const type = params.type;
+                this.filmService.getFilmById(+filmId, type === 'movie').subscribe({
                     next: (film: Film) => {
                         if (!film.Error) {
                             this.film.set(film);
@@ -34,6 +32,9 @@ export class FilmDetailComponent {
                         } else {
                             this.store.setError(film.Error)
                         }
+                    },
+                    error: (error) => {
+                        this.store.setError(error)
                     }
                 });
             }

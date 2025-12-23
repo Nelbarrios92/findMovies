@@ -1,4 +1,4 @@
-import { Component, input, } from '@angular/core';
+import { Component, input, output, } from '@angular/core';
 import { Film } from '../../models/films.model';
 import { RouterModule } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
@@ -12,5 +12,7 @@ import { DecimalPipe } from '@angular/common';
 export class FilmsComponent {
 
   film = input<Film>(null!);
+  clicked = output<number>();
+
 
 }

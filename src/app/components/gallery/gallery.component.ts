@@ -1,7 +1,8 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FilmsComponent } from '../films/films.component';
 import { ScrollLoopDirective } from '../../directives/scroll-loop.directive';
 import { Film } from '../../models/films.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -11,4 +12,10 @@ import { Film } from '../../models/films.model';
 })
 export class GalleryComponent {
   films = input<Film[]>([]);
+  isMovie = input<boolean>(true);
+  router = inject(Router);
+
+  navigate(id: number) {
+    this.router.navigate([`/film/${this.isMovie() ? 'movie' : 'serie'}/${id}`]);
+  }
 }

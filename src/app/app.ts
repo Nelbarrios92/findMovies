@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FilmsStore } from './state/films.store';
@@ -13,6 +13,7 @@ export class App {
   protected readonly title = signal('FindMovies');
   store = inject(FilmsStore);
   router = inject(Router);
+
   refresh() {
     window.location.href = this.router.url;
   }

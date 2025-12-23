@@ -7,17 +7,21 @@ import { FilmsStore } from '../../state/films.store';
 @Component({
   selector: 'app-home',
   imports: [TabsComponent, GalleryComponent, SkeletonLoaderDirective],
-  providers: [FilmsStore],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
 
-  readonly store = inject(FilmsStore);
+  store = inject(FilmsStore);
   selectedType = signal('movies');
 
   ngOnInit() {
-    this.store.loadMovies();
+    this.selectedType.set(this.store.selectedType());
+    if (this.selectedType() === 'movies') {
+      this.store.loadMovies();
+    } else {
+      this.store.loadSeries();
+    }
     this.store.loadFilteredMovies();
   }
 

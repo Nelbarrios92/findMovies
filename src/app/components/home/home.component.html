@@ -3,11 +3,12 @@
     <h1 class="w-fit text-yellow-400 text-2xl mb-4 skeleton">Featured Today</h1>
 
     <app-tabs (notify)="getFilms($event)">
-        <app-gallery [films]="selectedType() === 'movies' ? store.movies() : store.series()"></app-gallery>
+        <app-gallery [films]="selectedType() === 'movies' ? store.movies() : store.series()"
+            [isMovie]="selectedType() === 'movies'"></app-gallery>
     </app-tabs>
 
     <h1 class="w-fit text-yellow-400 text-2xl mt-8 mb-4 skeleton">Premieres and announcements</h1>
 
-    <app-gallery [films]="store.filteredMovies()"></app-gallery>
+    <app-gallery [films]="store.filteredMovies()" [isMovie]="true"></app-gallery>
 
 </section>

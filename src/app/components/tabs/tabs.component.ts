@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, Output, signal } from '@angular/core';
+import { Component, computed, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilmsStore } from '../../state/films.store';
 
@@ -9,7 +9,7 @@ import { FilmsStore } from '../../state/films.store';
   styleUrl: './tabs.component.scss',
 })
 
-export class TabsComponent {
+export class TabsComponent implements OnInit {
 
   @Output() notify: EventEmitter<string> = new EventEmitter();
 
@@ -18,11 +18,17 @@ export class TabsComponent {
     { id: 2, name: 'series' }
   ]);
 
+  store = inject(FilmsStore);
+
   selectedTab = signal(1);
+
+  ngOnInit(): void {
+    this.selectedTab.set(this.store.selectedType() === 'movies' ? 1 : 2);
+  }
 
   selectTab(tab: { id: number, name: string }) {
     this.selectedTab.set(tab.id);
-    localStorage.setItem('tab', tab.name);
+    this.store.setSelectedType(tab.name);
     this.notify.emit(tab.name);
   }
 }
