@@ -10,7 +10,6 @@ import { FilmsStore } from './state/films.store';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('FindMovies');
   store = inject(FilmsStore);
   activatedRoute = inject(ActivatedRoute);
 

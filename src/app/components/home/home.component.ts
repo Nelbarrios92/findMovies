@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TabsComponent } from '../tabs/tabs.component';
 import { GalleryComponent } from '../gallery/gallery.component';
 import { SkeletonLoaderDirective } from '../../directives/skeleton-loader.directive';

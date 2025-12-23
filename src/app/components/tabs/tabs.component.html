@@ -1,6 +1,5 @@
 <div class="flex border-b border-gray-600 gap-4">
 
-
     @for (tab of tabs(); track tab.id) {
     <button (click)="selectTab(tab)" class="text-center px-8 skeleton" [class.text-gray-500]="selectedTab() !== tab.id"
         [class.border-white-500]="selectedTab() === tab.id" [class.border-b-2]="selectedTab() === tab.id">

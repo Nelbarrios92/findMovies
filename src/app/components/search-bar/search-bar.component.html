@@ -21,9 +21,8 @@
            rounded-xl bg-white
            px-8
            border-none
-           focus-within:border-gray-500
-           focus-within:ring-2 focus-within:ring-gray-600">
-            <!-- Icono -->
+           focus-within:border-yellow-500
+           focus-within:ring-2 focus-within:ring-yellow-600">
 
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_21_811)">
@@ -38,13 +37,12 @@
                 </defs>
             </svg>
 
-
-            <!-- Input -->
             <input type="text" [formControl]="searchQuery" placeholder="Search FindMovies" class="w-full bg-transparent
              px-3 py-3
              text-black placeholder-gray-400
              outline-none" />
         </div>
+
         @if(searchQuery.value) {
         <div class="absolute top-16 left-0 right-0 rounded-md bg-gray-800 z-10">
             @for(film of films$ | async; track $index) {
@@ -60,8 +58,7 @@
                         class="line-clamp-1 text-sm text-nowrap overflow-hidden text-ellipsis w-full">{{film.overview}}</span>
                 </div>
             </div>
-            }
-            @else{
+            }@else{
             <div class=" py-24 h-100 flex justify-center items-center gap-4 hover:bg-gray-500">
                 <span class="text-4xl">No se encontraron resultados, intenta con otra busqueda</span>
             </div>
@@ -73,7 +70,3 @@
         }
     </div>
 </nav>
-
-<ng-template #noFilms>
-
-</ng-template>

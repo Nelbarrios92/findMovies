@@ -5,5 +5,5 @@ import { FilmDetailComponent } from './components/film-detail/film-detail.compon
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'film/:type/:id', component: FilmDetailComponent, runGuardsAndResolvers: 'always' }
+    { path: 'film/:type/:id', component: FilmDetailComponent }
 ];

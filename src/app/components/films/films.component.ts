@@ -15,6 +15,4 @@ export class FilmsComponent {
   film = input<Film>(null!);
   clicked = output<number>();
   store = inject(FilmsStore);
-
-
 }

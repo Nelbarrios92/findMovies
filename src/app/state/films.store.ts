@@ -40,6 +40,13 @@ export const FilmsStore = signalStore(
             });
         },
 
+        stopLoading() {
+            patchState(store, {
+                loading: false,
+                error: null
+            });
+        },
+
         setSelectedType(type: string) {
             patchState(store, {
                 selectedType: type
@@ -50,13 +57,6 @@ export const FilmsStore = signalStore(
             patchState(store, {
                 loading: false,
                 error: error
-            });
-        },
-
-        stopLoading() {
-            patchState(store, {
-                loading: false,
-                error: null
             });
         },
 

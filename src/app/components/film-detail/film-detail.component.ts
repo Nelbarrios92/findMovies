@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Film } from '../../models/films.model';
 import { FilmsStore } from '../../state/films.store';
@@ -40,8 +40,5 @@ export class FilmDetailComponent {
             }
         })
     }
-
-
-
 
 }

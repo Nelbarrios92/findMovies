@@ -1,4 +1,4 @@
-import { Component, computed, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilmsStore } from '../../state/films.store';
 
