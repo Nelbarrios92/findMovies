@@ -15,21 +15,12 @@ export class FilmService {
         .set('accept', 'application/json')
         .set('Authorization', `Bearer ${this.token}`);
 
-    getGenderFilms(): Observable<{ id: number, name: string }[]> {
-
-        const apiUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=en';
-
-        return this.http.get<{ results: { id: number, name: string }[] }>(apiUrl, { headers: this.headers }).pipe(
-            map(response => response.results)
-        );
-    }
-
     getFilms(isMovies: boolean = true, year?: number): Observable<Film[]> {
-
 
         const apiUrl = `https://api.themoviedb.org/3/discover/${isMovies ? 'movie' : 'tv'}?${year ? `year=${year}` : ''}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`;
 
         return this.http.get<{ results: Film[] }>(apiUrl, { headers: this.headers }).pipe(
+            delay(2000),
             map(response => response.results)
         );
     }

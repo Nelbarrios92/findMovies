@@ -1,5 +1,5 @@
-import { Component, effect, inject, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FilmsStore } from './state/films.store';
 
@@ -12,15 +12,10 @@ import { FilmsStore } from './state/films.store';
 export class App {
   protected readonly title = signal('FindMovies');
   store = inject(FilmsStore);
-  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
 
   refresh() {
-    window.location.href = this.router.url;
-  }
-
-  goToHome() {
-    this.store.loadMovies();
-    this.router.navigate(['/']);
+    window.location.href = this.activatedRoute.snapshot.url.toString();
   }
 
 }
