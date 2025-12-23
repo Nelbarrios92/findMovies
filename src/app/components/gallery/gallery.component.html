@@ -1,0 +1,8 @@
+<div class="no-scrollbar flex overflow-x-scroll gap-4" appScrollLoop>
+    @for(film of films(); track film.id){
+    <app-films [film]="film"></app-films>
+    }
+    @for(film of films(); track film.id+1){
+    <app-films [film]="film"></app-films>
+    }
+</div>

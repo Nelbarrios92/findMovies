@@ -1,0 +1,70 @@
+<section class="w-full" appSkeletonLoader>
+    <div class="-ml-32 px-[8em] mb-20 h-52  bg-[linear-gradient(90deg,rgba(255,255,255,0.08)_3.84%,rgba(0,0,0,0)_46.32%,rgba(255,255,255,0.08)_95.33%)]
+     blur-xs py-12
+     skeleton">
+        @if(!store.loading() && film() !== null){
+        <div class="flex justify-between items-center">
+            <div class="flex flex-col">
+                <div class="text-yellow-400 text-bold text-lg uppercase skeleton">{{film()?.Type}}</div>
+                <div class="text-gray-100 text-bold text-[40px] uppercase">{{ film()?.Title }}</div>
+                <div class="flex gap-8 text-gray-100 text-bold text-[15px] uppercase">
+                    <span>{{ film()?.Year }}</span>
+                    <span>{{ film()?.Runtime }}</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="skeleton" width="48" height="48" viewBox="0 0 48 48" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M23.9997 35.04L15.6997 40.04C15.333 40.2733 14.9497 40.3733 14.5497 40.34C14.1497 40.3067 13.7997 40.1734 13.4997 39.94C13.1997 39.7067 12.9663 39.4153 12.7997 39.066C12.633 38.7153 12.5997 38.3233 12.6997 37.89L14.8997 28.44L7.54965 22.09C7.21632 21.79 7.00832 21.448 6.92565 21.064C6.84165 20.6813 6.86632 20.3067 6.99965 19.94C7.13299 19.5733 7.33299 19.2733 7.59965 19.04C7.86632 18.8067 8.23299 18.6567 8.69965 18.59L18.3997 17.74L22.1497 8.84002C22.3163 8.44002 22.575 8.14001 22.9257 7.94001C23.275 7.74001 23.633 7.64001 23.9997 7.64001C24.3663 7.64001 24.725 7.74001 25.0757 7.94001C25.425 8.14001 25.683 8.44002 25.8497 8.84002L29.5997 17.74L39.2997 18.59C39.7663 18.6567 40.133 18.8067 40.3997 19.04C40.6663 19.2733 40.8663 19.5733 40.9997 19.94C41.133 20.3067 41.1583 20.6813 41.0757 21.064C40.9917 21.448 40.783 21.79 40.4497 22.09L33.0997 28.44L35.2997 37.89C35.3997 38.3233 35.3663 38.7153 35.1997 39.066C35.033 39.4153 34.7997 39.7067 34.4997 39.94C34.1997 40.1734 33.8497 40.3067 33.4497 40.34C33.0497 40.3733 32.6663 40.2733 32.2997 40.04L23.9997 35.04Z"
+                        fill="url(#paint0_linear_28_2916)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_28_2916" x1="6.87695" y1="7.64001" x2="43.8007" y2="40.4152"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FFEE58" />
+                            <stop offset="1" stop-color="#FF8F00" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="text-gray-100 text-bold text-[40px] uppercase">{{film()?.imdbRating}}</span>
+                <div class="text-gray-100 text-xs skeleton">
+                    ratings
+                    <div class="text-md">{{film()?.imdbVotes}}</div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="flex gap-8 mr-24">
+        <div class="w-[272px] h-[420px] rounded-md skeleton">
+            @if(!store.loading()){
+            <img class="skeleton object-cover h-full" src="{{ film()?.Poster }}" alt="{{ film()?.Title }}">
+            }
+        </div>
+        <div class="flex-1 flex justify-between flex-col gap-2">
+
+            @if(film()?.Awards !== "N/A"){
+            <div class="flex border-yellow-400 border rounded-lg skeleton">
+                <div
+                    class="flex skeleton items-center text-black justify-center text-bold box bg-yellow-400 px-12 rounded-l-md">
+                    Awards & nominations
+                </div>
+                <div class="text-gray-100 flex-1 flex items-center text-black px-4 skeleton">{{film()?.Awards}}</div>
+            </div>
+            }
+            <div class="text-gray-100 h-[30px] skeleton">{{film()?.Genre}}
+            </div>
+            <div class="text-gray-100 h-[80px] skeleton">{{film()?.Plot}}</div>
+            <div class="text-gray-100 h-[30px] skeleton"><span
+                    class="px-2 text-gray-100 skeleton">Director:</span>{{film()?.Director}}</div>
+            <div class="text-gray-100 h-[30px] skeleton"><span
+                    class="px-2 text-gray-100 skeleton">Screenplay:</span>{{film()?.Writer}}</div>
+            <div class="text-gray-100 h-[30px] skeleton"><span
+                    class="px-2 text-gray-100 skeleton">Stars:</span>{{film()?.Actors}}</div>
+            <div class="text-gray-100 h-[30px] skeleton"><span class="px-2 text-gray-100 skeleton">Countries of
+                    Origin:</span>{{film()?.Country}}</div>
+            <div class="text-gray-100 h-[30px] skeleton"><span class="px-2 text-gray-100 skeleton">Release
+                    date:</span>{{film()?.Released || film()?.release_date}}</div>
+        </div>
+    </div>
+</section>
